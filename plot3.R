@@ -15,7 +15,7 @@ colnames(dados) <- colnames(read.table("household_power_consumption.txt", sep = 
 dados$datetime <- strptime(paste(dados$Date,dados$Time),"%d/%m/%Y %H:%M:%S")
 
 
-## Adjusts the weekdays for English, instead of portuguese
+## Adjusts the weekdays for English, instead of default
 Sys.setlocale("LC_TIME", "C")
 
 ## Plots the graphic to a png file
@@ -33,5 +33,5 @@ with(dados,{
            cex = 0.8)})
 dev.off()
 
-## Restore portuguese weekdays
+## Restore default weekdays
 Sys.setlocale("LC_TIME", "")
