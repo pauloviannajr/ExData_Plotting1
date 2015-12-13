@@ -1,4 +1,3 @@
-## setwd(".\\AnaliseExploratoriaDados\\Project1")
 ## Please, place the unzziped household_power_consumption.txt at your working 
 ## directory before running this script
 
@@ -14,19 +13,16 @@ colnames(dados) <- colnames(read.table("household_power_consumption.txt", sep = 
 
 ## Creates the datetime variable converting the Date and Time variables to POSIXlt format
 dados$datetime <- strptime(paste(dados$Date,dados$Time),"%d/%m/%Y %H:%M:%S")
-##dados$Date <- as.Date(dados$Date,"%d/%m/%Y")
-##dados$Time <- strptime(dados$Time,"%H:%M:%S")
-##dados$weekday <- weekdays.POSIXt(dados$datetime)
+
 
 ## Adjusts the weekdays for English, instead of portuguese
 Sys.setlocale("LC_TIME", "C")
 
-## Plots the graphic
-par(mar = c(5,5,4,2), mfrow = c(1,1))
-par(cex=0.7)
+## Plots the graphic to a png file
+png(filename = "plot2.png",
+    width = 480, height = 480, units = "px", pointsize = 12)
 with(dados, plot(datetime, Global_active_power, type = "l", 
                  ylab = "Global Active Power (kilowatts)", xlab = ""))
-dev.copy(png, file = "plot2.png") 
 dev.off()
 
 ## Restore portuguese weekdays

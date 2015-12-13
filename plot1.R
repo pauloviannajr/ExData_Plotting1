@@ -1,4 +1,3 @@
-## setwd(".\\AnaliseExploratoriaDados\\Project1")
 ## Please, place the unzziped household_power_consumption.txt at your working 
 ## directory before running this script
 
@@ -14,13 +13,11 @@ colnames(dados) <- colnames(read.table("household_power_consumption.txt", sep = 
 
 ## Creates the datetime variable converting the Date and Time variables to POSIXlt format
 dados$datetime <- strptime(paste(dados$Date,dados$Time),"%d/%m/%Y %H:%M:%S")
-##dados$Date <- as.Date(dados$Date,"%d/%m/%Y")
-##dados$Time <- strptime(dados$Time,"%H:%M:%S")
 
-## Generates the Histogram of the Global Active Power
-par(mar = c(5,5,4,2), mfrow = c(1,1))
-par(cex=0.7)
+
+## Generates the Histogram of the Global Active Power in a png file
+png(filename = "plot1.png",
+    width = 480, height = 480, units = "px", pointsize = 12)
 hist(dados$Global_active_power, xlab = "Global Active Power (kilowatts)", 
      main = "Global Active Power", col = 498)
-dev.copy(png, file = "plot1.png") 
 dev.off()
